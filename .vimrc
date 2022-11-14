@@ -34,6 +34,10 @@ Plugin 'morhetz/gruvbox'
 "FZF 
 Plugin 'junegunn/fzf'
 
+"Indent Line
+Plugin 'Yggdroot/indentLine' 
+
+" Auto Complete
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -79,6 +83,12 @@ nnoremap <esc> :noh<return><esc>
 " Set clipboard to sysem clipboard 
 set clipboard=unnamedplus 
 
+"https://vim.fandom.com/wiki/GNU/Linux_clipboard_copy/paste_with_xclip
+vmap xyy :!xclip -f -sel clip <CR>
+map xpp  mz:-1r !xclip -o -sel clip<CR>`z
+
+
+
 " Set tab spaces to 4
 set tabstop=4
 set softtabstop=4
@@ -86,14 +96,26 @@ set shiftwidth=4
 
 " Auto Indent 
 set autoindent 
+" Use '>' to tab a block
 
 " Set Split 
 set splitbelow splitright
 
 " YAML 
-autocmd Filetype yaml set cursorcolumn
-autocmd Filetype yml set cursorcolumn
-autocmd Filetype  set cursorcolumn
+"autocmd Filetype yaml set cursorcolumn
+"autocmd Filetype yml set cursorcolumn
+"autocmd Filetype  set cursorcolumn
 
 
-
+" Toggle transparent background
+ let t:is_transparent = 0
+ function! Toggle_transparent()
+    if t:is_transparent == 0
+		hi Normal guibg=NONE ctermbg=NONE
+        let t:is_transparent = 1
+    else
+        set background=dark
+        let t:is_tranparent = 0
+    endif
+ endfunction
+nnoremap <C-x> : call Toggle_transparent()<CR>
