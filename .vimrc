@@ -1,6 +1,6 @@
  
 set nocompatible              " be iMproved, required
-filetype off                  " required
+filetype on                 " required
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/Vundle.vim
@@ -87,7 +87,8 @@ set clipboard=unnamedplus
 vmap xyy :!xclip -f -sel clip <CR>
 map xpp  mz:-1r !xclip -o -sel clip<CR>`z
 
-
+" Compile/Run code by Filetype
+autocmd FileType python map <buffer><C-c> :w<CR>:exec '!python3' shellescape (@%,1)<CR>
 
 " Set tab spaces to 4
 set tabstop=4
