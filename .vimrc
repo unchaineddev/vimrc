@@ -1,4 +1,4 @@
- 
+set encoding=utf-8 
 set nocompatible              " be iMproved, required
 filetype on                 " required
 
@@ -89,7 +89,7 @@ map xpp  mz:-1r !xclip -o -sel clip<CR>`z
 
 " Compile/Run code by Filetype
 autocmd FileType python map <buffer><C-c> :w<CR>:exec '!python3' shellescape (@%,1)<CR>
-
+autocmd FileType python imap <buffer><C-c> <esc>:w<CR>:exec '!python3' shellescape (@%,1)<CR> 
 " Set tab spaces to 4
 set tabstop=4
 set softtabstop=4
