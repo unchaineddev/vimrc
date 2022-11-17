@@ -102,6 +102,10 @@ set autoindent
 " Set Split 
 set splitbelow splitright
 
+
+"Comment the selected block out with: :norm i# (lower case i)
+"To uncomment, highlight your block again, and uncomment with: :norm ^x
+
 " YAML 
 "autocmd Filetype yaml set cursorcolumn
 "autocmd Filetype yml set cursorcolumn
