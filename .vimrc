@@ -37,6 +37,10 @@ Plugin 'junegunn/fzf'
 "Indent Line
 Plugin 'Yggdroot/indentLine' 
 
+" Nerd Tree
+  Plugin 'preservim/nerdtree'
+
+
 " Auto Complete
 
 " All of your Plugins must be added before the following line
@@ -102,9 +106,12 @@ set autoindent
 " Set Split 
 set splitbelow splitright
 
+" FZF notes - Most commands support CTRL-T / CTRL-X / CTRL-V key bindings to open in a new tab, a new split, or in a new vertical split.
 
 "Comment the selected block out with: :norm i# (lower case i)
 "To uncomment, highlight your block again, and uncomment with: :norm ^x
+
+
 
 " YAML 
 "autocmd Filetype yaml set cursorcolumn
@@ -134,6 +141,14 @@ nnoremap <C-x> : call Toggle_transparent()<CR>
  " Clear status line when vimrc is reloaded.
  set statusline=
 
+
+" Indent Line
+let g:indentLine_setColors = 0
+"let g:indentLine_color_term = 239
+"let g:indentLine_setConceal = 0
+"let g:indentLine_char = '┆'
+":IndentLinesToggle
+
  " Status line left side.
  set statusline+=\ %F\ %M\ %Y\ %R
 
@@ -146,5 +161,10 @@ nnoremap <C-x> : call Toggle_transparent()<CR>
  " Show the status on the second to last line.
  set laststatus=2
 
- " }}}
+"  }}}
 
+" NERD TREE
+nnoremap <leader>n :NERDTreeFocus<CR>
+nnoremap <C-n> :NERDTree<CR>
+nnoremap <C-t> :NERDTreeToggle<CR>
+nnoremap <C-f> :NERDTreeFind<CR>
