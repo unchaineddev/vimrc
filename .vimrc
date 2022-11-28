@@ -2,6 +2,9 @@ set encoding=utf-8
 set nocompatible              " be iMproved, required
 filetype on                 " required
 
+
+" ----- BEGIN Vundle Plugin Manager -----
+
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/Vundle.vim
 call vundle#begin()
@@ -28,20 +31,15 @@ Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 " different version somewhere else.
 " Plugin 'ascenator/L9', {'name': 'newL9'}
 
-" Color schemes for Vim 
-Plugin 'morhetz/gruvbox'
-
 "FZF 
 Plugin 'junegunn/fzf'
-
+" Color schemes for Vim 
+Plugin 'morhetz/gruvbox'
 "Indent Line
 Plugin 'Yggdroot/indentLine' 
-
 " Nerd Tree
-  Plugin 'preservim/nerdtree'
+Plugin 'preservim/nerdtree'
 
-
-" Auto Complete
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -58,65 +56,20 @@ filetype plugin indent on    " required
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 
+"----- END VUNDLE PLUGIN Manager -----
 
 
 
 
-" setting color scheme 
+
+" ----- color scheme -----
 
 autocmd vimenter * ++nested colorscheme gruvbox 
 let g:gruvbox_contrast_dark='hard'
 set background=dark
 hi Normal guibg=NONE ctermbg=NONE
 
-
-" Show Line numbers
-set number relativenumber
-
-" Turn on syntax highlighting 
-syntax on
- 
-
-" Set Highlight Search Pattern
-set hlsearch
-set ignorecase
-set smartcase
-set incsearch
-nnoremap <esc> :noh<return><esc>
-
-" Set clipboard to sysem clipboard 
-set clipboard=unnamedplus 
-
-"https://vim.fandom.com/wiki/GNU/Linux_clipboard_copy/paste_with_xclip
-vmap xyy :!xclip -f -sel clip <CR>
-map xpp  mz:-1r !xclip -o -sel clip<CR>`z
-
-" Compile/Run code by Filetype
-autocmd FileType python map <buffer><C-c> :w<CR>:exec '!python3' shellescape (@%,1)<CR>
-autocmd FileType python imap <buffer><C-c> <esc>:w<CR>:exec '!python3' shellescape (@%,1)<CR> 
-" Set tab spaces to 4
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
-
-" Auto Indent 
-set autoindent 
-" Use '>' to tab a block
-
-" Set Split 
-set splitbelow splitright
-
-" FZF notes - Most commands support CTRL-T / CTRL-X / CTRL-V key bindings to open in a new tab, a new split, or in a new vertical split.
-
-"Comment the selected block out with: :norm i# (lower case i)
-"To uncomment, highlight your block again, and uncomment with: :norm ^x
-
-
-
-" YAML 
-"autocmd Filetype yaml set cursorcolumn
-"autocmd Filetype yml set cursorcolumn
-"autocmd Filetype  set cursorcolumn
+"-------------------------
 
 
 " Toggle transparent background
@@ -132,39 +85,105 @@ set splitbelow splitright
  endfunction
 nnoremap <C-x> : call Toggle_transparent()<CR>
 
+" Status line left side.
+set statusline+=\ %F\ %M\ %Y\ %R
 
+" Use a divider to separate the left side from the right side.
+set statusline+=%=
+
+" Status line right side.
+set statusline+=\ row:\ %l\ col:\ %c\ percent:\ %p%%
+
+" Show the status on the second to last line.
+set laststatus=2
+
+"set statusline+=%#LineNr#
+"set statusline+=\ %f
+
+"  }}}
+
+
+" Show Line numbers
+set number relativenumber
+
+" Turn on syntax highlighting 
+syntax on
+
+" Set Highlight Search Pattern
+set hlsearch
+set ignorecase
+set smartcase
+set incsearch
+nnoremap <esc> :noh<return><esc>
+
+" Set tab spaces to 4
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+
+":tabnew filename
+nnoremap <C-j> :tabprevious<CR>                                                                            
+nnoremap <C-k> :tabnext<CR>
+
+
+" Auto Indent 
+set autoindent 
+" Use '>' to tab a block
+
+
+
+" ----- Clipboard Related -----
+
+" Set clipboard to sysem clipboard 
+set clipboard=unnamedplus 
 
 " while pasting, use :set paste 
 " after you finish pasting, use :set nopaste
 
 
- " Clear status line when vimrc is reloaded.
- set statusline=
+"https://vim.fandom.com/wiki/GNU/Linux_clipboard_copy/paste_with_xclip
+vmap xyy :!xclip -f -sel clip <CR>
+map xpp  mz:-1r !xclip -o -sel clip<CR>`z
+
+"------------------------------
 
 
-" Indent Line
+" Compile/Run code by Filetype
+autocmd FileType python map <buffer><C-c> :w<CR>:exec '!python3' shellescape (@%,1)<CR>
+autocmd FileType python imap <buffer><C-c> <esc>:w<CR>:exec '!python3' shellescape (@%,1)<CR> 
+" YAML 
+"autocmd Filetype yaml set cursorcolumn
+"autocmd Filetype yml set cursorcolumn
+"autocmd Filetype  set cursorcolumn
+
+
+" Set Split 
+set splitbelow splitright
+
+
+"----- Plugin Related -----
+
+" FZF notes - Most commands support CTRL-T / CTRL-X / CTRL-V key bindings to open in a new tab, a new split, or in a new vertical split.
+
+"Comment the selected block out with: :norm i# (lower case i)
+"To uncomment, highlight your block again, and uncomment with: :norm ^x
+
+
+
+" -----Indent Line-----
 let g:indentLine_setColors = 0
 "let g:indentLine_color_term = 239
 "let g:indentLine_setConceal = 0
 "let g:indentLine_char = '┆'
 ":IndentLinesToggle
+"
 
- " Status line left side.
- set statusline+=\ %F\ %M\ %Y\ %R
-
- " Use a divider to separate the left side from the right side.
- set statusline+=%=
-
- " Status line right side.
- set statusline+=\ row:\ %l\ col:\ %c\ percent:\ %p%%
-
- " Show the status on the second to last line.
- set laststatus=2
-
-"  }}}
 
 " NERD TREE
 nnoremap <leader>n :NERDTreeFocus<CR>
 nnoremap <C-n> :NERDTree<CR>
 nnoremap <C-t> :NERDTreeToggle<CR>
 nnoremap <C-f> :NERDTreeFind<CR>
+
+
+
