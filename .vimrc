@@ -39,6 +39,8 @@ Plugin 'morhetz/gruvbox'
 Plugin 'Yggdroot/indentLine' 
 " Nerd Tree
 Plugin 'preservim/nerdtree'
+" You Complete Me
+Plugin 'ycm-core/YouCompleteMe'
 
 
 " All of your Plugins must be added before the following line
@@ -185,5 +187,10 @@ nnoremap <C-n> :NERDTree<CR>
 nnoremap <C-t> :NERDTreeToggle<CR>
 nnoremap <C-f> :NERDTreeFind<CR>
 
+" You complete me
+let g:ycm_global_ycm_extra_conf='~/.vim/bundle/YouCompleteMe/.ycm_extra_conf.py'
+let g:ycm_confirm_extra_conf=0
+let g:ycm_python_binary_path='/usr/bin/python3'
 
-
+let g:ycm_autoclose_preview_window_after_completion = 1
+let g:ycm_autoclose_preview_window_after_insertion = 1
