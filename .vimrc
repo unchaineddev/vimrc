@@ -132,7 +132,11 @@ nnoremap <C-k> :tabnext<CR>
 set autoindent 
 " Use '>' to tab a block
 
-
+" Enable folding
+set foldmethod=indent
+set foldlevel=99
+" Enable folding with the spacebar
+nnoremap <space> za
 
 " ----- Clipboard Related -----
 
